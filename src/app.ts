@@ -1,13 +1,14 @@
+// app.ts
 import express from 'express';
+import bodyParser from 'body-parser';
+import userRoutes from './routes/userRoutes';
 
 const app = express();
 const port = 3000;
 
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
+app.use(bodyParser.json());
+app.use('/users', userRoutes);
 
 app.listen(port, () => {
-    console.log('Hello, World!');
-  console.log(`Server is running on http://localhost:${port}`);
+    console.log(`Server is running at http://localhost:${port}`);
 });
