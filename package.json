@@ -1,26 +1,26 @@
 {
   "name": "user-service",
   "version": "1.0.0",
-  "description": "to generate typescript files",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node src/server.ts",
-    "build": "tsc -p ."
+    "start": "npm run dev",
+    "dev": "npm run build && nodemon dist/app.js",
+    "build": "tsc",
+    "serve": "node dist/app.js",
+    "watch": "tsc -w"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@grpc/proto-loader": "^0.7.10",
-    "pg": "^8.11.3",
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.9.1",
+    "nodemon": "^3.0.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   },
-  "devDependencies": {
-    "@grpc/grpc-js": "^1.9.9",
-    "@types/google-protobuf": "^3.15.10",
-    "@types/node": "^20.9.0",
-    "tsc": "^2.0.4"
+  "dependencies": {
+    "express": "^4.18.2"
   }
 }
