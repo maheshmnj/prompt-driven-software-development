@@ -8,7 +8,6 @@ class UserService {
     }
 
     async getUserById(id: number) {
-        console.log("querying user by id", id)
         const result = await pool.query('SELECT * FROM users WHERE id = $1', [id]);
         return result.rows[0];
     }
@@ -23,12 +22,24 @@ class UserService {
     }
 
     async updateUser(id: number, updatedUser: any) {
-        // Implement the update query
+        const { username, password, role, name, contact_email, contact_phone, mailing_address } = updatedUser;
+        const result = await pool.query(
+            'UPDATE users SET username = $1, password = $2, role = $3, name = $4, contact_email = $5, contact_phone = $6, mailing_address = $7 WHERE id = $8 RETURNING *',
+            [username, password, role, name, contact_email, contact_phone, mailing_address, id]
+        );
+        return result.rows[0];
     }
 
     async deleteUser(id: number) {
-        // Implement the delete query
+        const result = await pool.query('DELETE FROM users WHERE id = $1 RETURNING *', [id]);
+        return result.rows[0];
     }
+
+    async getUserByUsername(username: string) {
+        const result = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
+        return result.rows[0];
+    }
+
 }
 
 export default new UserService();
