@@ -1,9 +1,11 @@
 // src/__tests__/authService.spec.ts
+import request from 'supertest';
 import authService from '../services/authService';
+import app from '../app';
 
 describe('Authentication Service', () => {
   it('should sign up a new user', async () => {
-    const username = 'testuser3';
+    const username = 'testuser5';
     const password = 'testpassword';
     const role = "student";
     const name = "John Doe";
@@ -53,7 +55,7 @@ describe('Authentication Service', () => {
   });
 
   it('should log in an existing user', async () => {
-    const username = 'testuser3';
+    const username = 'testuser4';
     const password = 'testpassword';
     const result = await authService.logIn(username, password);
 
