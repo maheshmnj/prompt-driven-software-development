@@ -1,24 +1,15 @@
 // userRoutes.ts
 import express from 'express';
-import userService from '../services/userService';
-
+import userController from '../controllers/userController';
+import { authMiddleware } from '../middleware/authMiddleware';
 const router = express.Router();
 
-router.get('/', async (req, res) => {
-    const users = await userService.getAllUsers();
-    res.json(users);
-});
+router.post('/', userController.createUser);
 
-router.get('/:id', async (req, res) => {
-    const id = parseInt(req.params.id);
-    const user = await userService.getUserById(id);
-    res.json(user);
-});
-
-router.post('/', async (req, res) => {
-    const newUser = req.body;
-    const createdUser = await userService.createUser(newUser);
-    res.json(createdUser);
-});
+// Protected routes
+router.get('/', authMiddleware, userController.getAllUsers);
+router.put('/:id', authMiddleware, userController.updateUser);
+router.get('/:id', authMiddleware, userController.getUserById);
+router.delete('/:id', authMiddleware, userController.deleteUser);
 
 export default router;
