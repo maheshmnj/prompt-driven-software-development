@@ -30,6 +30,7 @@ Assuming the database is set up with the required schema and configuration:
 ```bash
 pg_ctl -D /opt/homebrew/var/postgresql@14 start
 ```
+
 ```bash
 psql postgres # Launch the PostgreSQL shell
 /conninfo # View connection details
@@ -43,6 +44,11 @@ psql postgres # Launch the PostgreSQL shell
 - PUT /users/:id: Update details of a specific user (protected route, requires authentication).
 - DELETE /users/:id: Delete a specific user.
 
+### Authentication Endpoints
+
+- POST /auth/login: Login a user and return a JWT.
+- POST /auth/signup: Create a new user
+
 ### Technology Stack
 
 Node.js
@@ -50,33 +56,41 @@ Express
 PostgreSQL
 JSON Web Tokens (JWT)
 
-
 ### Folder Structure
 
 ```sql
-/user-service
-|-- src
-|   |-- controllers
-|   |-- db
-|   |-- middleware
-|   |-- routes
-|   |-- services
-|   |-- app.ts
-|-- dist
-|-- node_modules
+user-service/
+|-- src/
+|   |-- controllers/
+|   |   |-- authController.ts
+|   |   |-- userController.ts
+|   |-- db/
+|   |   |-- index.ts
+|   |-- middleware/
+|   |   |-- authMiddleware.ts
+|   |-- models/
+|   |   |-- user.ts
+|   |-- routes/
+|   |   |-- authRouter.ts
+|   |   |-- userRouter.ts
+|   |-- services/
+|   |   |-- authService.ts
+|   |   |-- userService.ts
+|-- .gitignore
 |-- package.json
 |-- tsconfig.json
+|-- nodemon.json
 |-- README.md
 ```
 
 ### Security Considerations
+
 User authentication is implemented using JWT for secure and stateless communication.
 Passwords are hashed before storing them in the database to enhance security.
 
 ### Contributing
+
 Feel free to contribute to the project by opening issues or creating pull requests.
 Feel free to customize and expand this template based on your project's specific details and requirements.
 
-
-
-*Note: This readme was generated using Chat GPT*
+_Note: This readme was generated using Chat GPT_
