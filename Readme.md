@@ -93,4 +93,9 @@ Passwords are hashed before storing them in the database to enhance security.
 Feel free to contribute to the project by opening issues or creating pull requests.
 Feel free to customize and expand this template based on your project's specific details and requirements.
 
-_Note: This readme was generated using Chat GPT the complete chat can be found here: https://chat.openai.com/share/859561ef-cfec-4523-b8ce-c07fa6c0d986_
+_Note: This readme was generated using Chat GPT the complete chat can be found here: https://chat.openai.com/share/2bf9150e-b4b8-4881-a4e8-4985121ca4a1_
+ 
+
+
+_The summary of this project can be found here: https://gist.github.com/maheshmnj/8b39d6928249aad67732be5279d0dd57_
+
