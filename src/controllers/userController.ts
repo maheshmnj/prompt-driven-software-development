@@ -31,7 +31,7 @@ class UserController {
 
     async createUser(req: express.Request, res: express.Response) {
         const newUser = req.body;
-
+        console.log("creating new user", newUser);
         try {
             const user = await userService.createUser(newUser);
             res.status(201).json(user);

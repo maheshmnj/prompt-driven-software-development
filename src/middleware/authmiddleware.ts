@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
 import * as jwt from 'jsonwebtoken';
 
-const jwtSecret = process.env.JWT_SECRET || 'your-default-secret-key';
+const jwtSecret = process.env.JWT_SECRET || 'thisisadummysecretkey';
 
 export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  const token = req.header('Authorization');
+  const token = req.header('Authorization')?.split(' ')[1];
 
   if (!token) {
     return res.status(401).json({ message: 'Authorization token is missing' });
