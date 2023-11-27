@@ -4,9 +4,11 @@ import bodyParser from 'body-parser';
 import userRoutes from './routes/userRoutes';
 import authRouter from './routes/authRouter';
 import pool from './db';
+import dotenv from "dotenv";
 
 const app = express();
-const port = process.env.PORT || 3001;
+dotenv.config();
+const port = process.env.PORT;
 
 app.use(bodyParser.json());
 app.use('/api/users', userRoutes);
