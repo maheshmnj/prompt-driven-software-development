@@ -5,11 +5,11 @@ import app from '../app'; // Import your Express app instance
 describe('Authentication Routes', () => {
     it('should sign up a new user', async () => {
         const newUser = {
-            "username": "new_user1",
+            "username": "new_user3",
             "password": "test123",
             "role": "student",
             "name": "New User",
-            "contact_email": "new.user@gmail.com",
+            "contact_email": "new.user3@gmail.com",
             "contact_phone": "657-1234",
             "mailing_address": "1456 Main St, Cityville",
             "created_at": "2023-11-19T23:44:20.719Z",
