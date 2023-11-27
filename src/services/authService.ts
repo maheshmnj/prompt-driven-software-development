@@ -3,6 +3,7 @@ import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 import pool from '../db';
 import userService from '../services/userService';
+import { sanitizeInput } from '../utils/utils';
 
 const jwtSecret = process.env.JWT_SECRET || 'thisisadummysecretkey';
 class AuthService {
@@ -17,6 +18,7 @@ class AuthService {
   ): Promise<string | null> {
     try {
       // Check if the username is already taken
+      const sanitizedUsername = sanitizeInput(username);
       const existingUser = await userService.getUserByUsername(username);
       if (existingUser) {
         return null; // Username already exists
@@ -46,7 +48,8 @@ class AuthService {
   async logIn(username: string, password: string): Promise<string | null> {
     try {
       // Retrieve the user from the database
-      const existingUser = await userService.getUserByUsername(username);
+      const sanitizedUsername = sanitizeInput(username);
+      const existingUser = await userService.getUserByUsername(sanitizedUsername);
       // Check if the user exists
 
       if (!existingUser) {

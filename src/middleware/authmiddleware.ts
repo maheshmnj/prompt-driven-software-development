@@ -1,23 +1,29 @@
 import { Request, Response, NextFunction } from 'express';
-import * as jwt from 'jsonwebtoken';
+import { sanitizeJwtToken } from '../utils/utils';
 
 const jwtSecret = process.env.JWT_SECRET || 'thisisadummysecretkey';
 
 export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  const token = req.header('Authorization')?.split(' ')[1];
+  const tokenFromHeader = req.header('Authorization')?.split(' ')[1];
 
-  if (!token) {
+  if (!tokenFromHeader) {
     return res.status(401).json({ message: 'Authorization token is missing' });
   }
 
-  try {
-    const decoded = jwt.verify(token, jwtSecret);
+  const { valid, payload } = sanitizeJwtToken(tokenFromHeader);
+
+  if (valid) {
+    // Token is valid, and you can use the payload in your logic
+    console.log('Valid token payload:', payload);
+
     // Optionally, you can set decoded information directly on req.locals or req.session
-    // req.locals.user = decoded;
-    // req.session.user = decoded;
+    // req.locals.user = payload;
+    // req.session.user = payload;
+
     next();
-  } catch (error) {
-    console.error('Error during token verification:', error);
-    return res.status(401).json({ message: 'Invalid token' });
+  } else {
+    // Token is invalid or expired
+    console.log('Invalid token');
+    res.status(401).json({ message: 'Invalid token' });
   }
 };
