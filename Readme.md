@@ -87,6 +87,7 @@ user-service/
 
 User authentication is implemented using JWT for secure and stateless communication.
 Passwords are hashed before storing them in the database to enhance security.
+Routes are protected using middleware to ensure that only authenticated users can access them.
 
 ### Contributing
 

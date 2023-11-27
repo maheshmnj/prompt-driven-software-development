@@ -3,7 +3,7 @@ import * as jwt from 'jsonwebtoken';
 export function sanitizeInput(input: string): string {
     // Implement your custom sanitization logic here
     // Example: Replace any characters that are not alphanumeric
-    return input.replace(/[^a-zA-Z0-9]/g, '');
+    return input.replace(/[^a-zA-Z0-9_]/g, '');
 }
 
 export const sanitizeEmail = (email: string): string | null => {

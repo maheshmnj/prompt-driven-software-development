@@ -5,11 +5,11 @@ import app from '../app';
 
 describe('Authentication Service', () => {
   it('should sign up a new user', async () => {
-    const username = 'testuser5';
+    const username = 'testuser';
     const password = 'testpassword';
     const role = "student";
     const name = "John Doe";
-    const contact_email = "john.doee@gmail.com";
+    const contact_email = "test.user@gmail.com";
     const contact_phone = "555-1234";
     const mailing_address = "123 Main St; Cityville";
     const created_at = "2023-11-17T23:44:20.719Z";
@@ -30,11 +30,11 @@ describe('Authentication Service', () => {
   });
 
   it('should not sign up a user with an existing username', async () => {
-    const username = 'testuser3';
+    const username = 'testuser';
     const password = 'testpassword';
     const role = "student";
     const name = "John Doe";
-    const contact_email = "john.doee@gmail.com";
+    const contact_email = "test.user@gmail.com";
     const contact_phone = "555-1234";
     const mailing_address = "123 Main St; Cityville";
     const created_at = "2023-11-17T23:44:20.719Z";
@@ -55,7 +55,7 @@ describe('Authentication Service', () => {
   });
 
   it('should log in an existing user', async () => {
-    const username = 'testuser4';
+    const username = 'testuser';
     const password = 'testpassword';
     const result = await authService.logIn(username, password);
 
