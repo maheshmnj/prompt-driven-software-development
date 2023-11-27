@@ -30,7 +30,7 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
 };
 
 // add a middleware to check if the token belongs to the user
-// to allow users to access only their own resources
+// to allow users to access only their own resources or admins to access any resource
 export const selfMiddleware = (req: Request, res: Response, next: NextFunction) => {
   const tokenFromHeader = req.header('Authorization')?.split(' ')[1];
 
@@ -50,7 +50,7 @@ export const selfMiddleware = (req: Request, res: Response, next: NextFunction) 
 
     const id = req.params.id;
     // check if the user is the owner of the resource
-    if (payload.userId === parseInt(id)) {
+    if (payload.userId === parseInt(id) || payload.role === 'admin') {
       next();
     } else {
       res.status(401).json({ message: 'You are not authorized to access this route' });
